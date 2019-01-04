@@ -2,27 +2,18 @@ package com.example.witne.popularmoviesstage1;
 
 //import android.graphics.Movie;
 import com.example.witne.data.Movie;
-
 import android.os.AsyncTask;
-
-import androidx.appcompat.app.AlertController;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import androidx.appcompat.widget.GridLayoutManager;
-import androidx.appcompat.widget.LinearLayoutManager;
-import androidx.appcompat.widget.RecyclerView;
-
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;
 import android.widget.ProgressBar;
-
 import com.example.witne.utilities.JsonUtils;
 import com.example.witne.utilities.NetworkUtils;
-//import com.example.witne.utilities.NetworkUtils;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -33,10 +24,13 @@ public class MainMoviesActivity extends AppCompatActivity {
     private String popularOrTopRatedMovies;
 
     private List<Movie> movieList;
-    private MovieAdapter movieAdapter;
-    //private Movie movie;
+    //private MovieAdapter movieAdapter;
 
-    //private String popularMoviesUrl;
+    /*@BindView(R.id.rv_popularMovies)
+    RecyclerView recyclerView;
+
+    @BindView(R.id.pb_loading_indicator)
+    ProgressBar progressBar;*/
 
     @BindView(R.id.rv_popularMovies)
     RecyclerView recyclerView;
@@ -44,6 +38,8 @@ public class MainMoviesActivity extends AppCompatActivity {
     @BindView(R.id.pb_loading_indicator)
     ProgressBar progressBar;
 
+    //RecyclerView recyclerView;
+    //ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,9 +47,12 @@ public class MainMoviesActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main_movies);
         ButterKnife.bind(this);
 
+        //recyclerView = (RecyclerView)findViewById(R.id.rv_popularMovies);
+        //progressBar = (ProgressBar)findViewById(R.id.pb_loading_indicator);
+
         //define layout manager for the recycler view
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(this,2);
-        recyclerView.setLayoutManager(gridLayoutManager);
+        GridLayoutManager gridLayoutManager1 = new GridLayoutManager(this,2);
+        recyclerView.setLayoutManager(gridLayoutManager1);
 
         //to improve performance of the recycler view
         recyclerView.setHasFixedSize(true);
@@ -62,12 +61,9 @@ public class MainMoviesActivity extends AppCompatActivity {
         popularOrTopRatedMovies = "popular";
         URL movieSearch = NetworkUtils.buildUrl(popularOrTopRatedMovies);
 
-        //initializing the recycler view adapter
-        //movieList = new ArrayList<>();
+        //fetch data on separate thread
+        // and initialize the recycler viewer with data from movie adapter
         new  FecthMovieTask().execute(movieSearch);
-        //movieAdapter = new MovieAdapter(movieList);
-        //recyclerView.setAdapter(movieAdapter);
-
     }
 
     //Async inner class to fetch network data
@@ -100,7 +96,7 @@ public class MainMoviesActivity extends AppCompatActivity {
             //movieList = new ArrayList<>();
             //movieList = JsonUtils.parseMovieJson(jsonData);
             //movieAdapter = new MovieAdapter(movieList);
-            movieAdapter = new MovieAdapter(JsonUtils.parseMovieJson(jsonData));
+            MovieAdapter movieAdapter = new MovieAdapter(JsonUtils.parseMovieJson(jsonData));
             recyclerView.setAdapter(movieAdapter);
         }
     }
