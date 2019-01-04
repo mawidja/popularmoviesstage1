@@ -14,8 +14,8 @@ import com.example.witne.utilities.NetworkUtils;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
-import butterknife.BindView;
-import butterknife.ButterKnife;
+//import butterknife.BindView;
+//import butterknife.ButterKnife;
 
 public class MainMoviesActivity extends AppCompatActivity {
 
@@ -24,7 +24,6 @@ public class MainMoviesActivity extends AppCompatActivity {
     private String popularOrTopRatedMovies;
 
     private List<Movie> movieList;
-    //private MovieAdapter movieAdapter;
 
     /*@BindView(R.id.rv_popularMovies)
     RecyclerView recyclerView;
@@ -32,23 +31,17 @@ public class MainMoviesActivity extends AppCompatActivity {
     @BindView(R.id.pb_loading_indicator)
     ProgressBar progressBar;*/
 
-    @BindView(R.id.rv_popularMovies)
-    RecyclerView recyclerView;
-
-    @BindView(R.id.pb_loading_indicator)
-    ProgressBar progressBar;
-
-    //RecyclerView recyclerView;
-    //ProgressBar progressBar;
+    private RecyclerView recyclerView;
+    private ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_movies);
-        ButterKnife.bind(this);
+        //ButterKnife.bind(this);
 
-        //recyclerView = (RecyclerView)findViewById(R.id.rv_popularMovies);
-        //progressBar = (ProgressBar)findViewById(R.id.pb_loading_indicator);
+        recyclerView = (RecyclerView)findViewById(R.id.rv_popularMovies);
+        progressBar = (ProgressBar)findViewById(R.id.pb_loading_indicator);
 
         //define layout manager for the recycler view
         GridLayoutManager gridLayoutManager1 = new GridLayoutManager(this,2);
@@ -93,9 +86,6 @@ public class MainMoviesActivity extends AppCompatActivity {
         protected void onPostExecute(String jsonData ){
             super.onPostExecute(jsonData);
             progressBar.setVisibility(View.INVISIBLE);
-            //movieList = new ArrayList<>();
-            //movieList = JsonUtils.parseMovieJson(jsonData);
-            //movieAdapter = new MovieAdapter(movieList);
             MovieAdapter movieAdapter = new MovieAdapter(JsonUtils.parseMovieJson(jsonData));
             recyclerView.setAdapter(movieAdapter);
         }

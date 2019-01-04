@@ -24,8 +24,10 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.1.0-alpha01'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.0-alpha3'
     implementation 'androidx.recyclerview:recyclerview:1.1.0-alpha01'
-    //Lightweight Butter knife API to inject views in Android components
-    implementation 'com.jakewharton:butterknife:10.0.0'
-    annotationProcessor 'com.jakewharton:butterknife-compiler:10.0.0'
+
+    //Lightweight Butter knife API to inject views in Android components -
+    // could not use the API, had many issues, when trying to run on my Marshmallow device
+    //implementation 'com.jakewharton:butterknife:10.0.0'
+    //annotationProcessor 'com.jakewharton:butterknife-compiler:10.0.'
 
 }
