@@ -51,7 +51,8 @@ public class MainMoviesActivity extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
 
         //build the url string
-        popularOrTopRatedMovies = "popular";
+        //popularOrTopRatedMovies = "popular";
+        popularOrTopRatedMovies = "top_rated";
         URL movieSearch = NetworkUtils.buildUrl(popularOrTopRatedMovies);
 
         //fetch data on separate thread

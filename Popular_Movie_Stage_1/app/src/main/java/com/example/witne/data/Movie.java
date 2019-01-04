@@ -5,8 +5,6 @@ import android.os.Parcelable;
 
 public class Movie implements Parcelable {
 
-    private String poster_path;
-    private String movie_overview;
 
     public String getPoster_path() {
         return poster_path;
@@ -56,13 +54,13 @@ public class Movie implements Parcelable {
         this.title = title;
     }
 
-    public String getBack_drop_path() {
+   /* public String getBack_drop_path() {
         return back_drop_path;
     }
 
     public void setBack_drop_path(String back_drop_path) {
         this.back_drop_path = back_drop_path;
-    }
+    }*/
 
     public double getPopularity() {
         return popularity;
@@ -84,10 +82,12 @@ public class Movie implements Parcelable {
     private int movieId;
     private String original_title;
     private String title;
-    private String back_drop_path;
+    //private String poster_path;
     private double popularity;
     //private int vote_count;
     private double vote_average;
+    private String poster_path;
+    private String movie_overview;
 
     //No args constructor
     public Movie(){
@@ -96,15 +96,17 @@ public class Movie implements Parcelable {
 
     //Args constructor
     public Movie(String release_date,int movieId,String original_title,String title,
-                 String back_drop_path,double popularity,double vote_average){
+                 String poster_path,double popularity,double vote_average,
+                 String movie_overview){
 
         this.release_date = release_date;
         this.movieId = movieId;
         this.original_title = original_title;
         this.title = title;
-        this.back_drop_path = back_drop_path;
+        this.poster_path = poster_path;
         this.popularity = popularity;
         this.vote_average = vote_average;
+        this.movie_overview = movie_overview;
     }
 
     //De-parcel object
@@ -113,9 +115,10 @@ public class Movie implements Parcelable {
         movieId = in.readInt();
         original_title = in.readString();
         title = in.readString();
-        back_drop_path = in.readString();
+        poster_path = in.readString();
         popularity = in.readDouble();
         vote_average = in.readDouble();
+        movie_overview = in.readString();
 
     }
 
@@ -130,9 +133,10 @@ public class Movie implements Parcelable {
         dest.writeInt(movieId);
         dest.writeString(original_title);
         dest.writeString(title);
-        dest.writeString(back_drop_path);
+        dest.writeString(poster_path);
         dest.writeDouble(popularity);
         dest.writeDouble(vote_average);
+        dest.writeString(movie_overview);
 
     }
 

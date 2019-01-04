@@ -2,6 +2,8 @@ package com.example.witne.popularmoviesstage1;
 
 import android.content.Context;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -69,9 +71,15 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
         // method for convenience to bind things up!
         public void bind(Movie movieDetails){
             textView.setText(movieDetails.getTitle());
+
+            //Uri builtUri = Uri.parse(IMAGE_BASE_URL).buildUpon()
+            //        .appendPath(movieDetails.getPoster_path())
+            //        .build();
+            String posterPath = IMAGE_BASE_URL + movieDetails.getPoster_path();
             Picasso.get()
-                    .load(IMAGE_BASE_URL+movieDetails.getPoster_path())
+                    .load(posterPath)
                     .into(imageView);
+            //Picasso.get().load(builtUri).into(imageView);
         }
 
     }

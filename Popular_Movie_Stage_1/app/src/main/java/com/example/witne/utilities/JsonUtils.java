@@ -30,8 +30,8 @@ public class JsonUtils {
                 JSONObject jsonObject = results.getJSONObject(i);
                movie = new Movie(jsonObject.getString("release_date"),jsonObject.getInt("id"),
                                     jsonObject.getString("original_title"),jsonObject.getString("title"),
-                                    jsonObject.getString("backdrop_path"),jsonObject.getDouble("popularity"),
-                                    jsonObject.getDouble("vote_average"));
+                                    jsonObject.getString("poster_path"),jsonObject.getDouble("popularity"),
+                                    jsonObject.getDouble("vote_average"),jsonObject.getString("overview"));
                 movieArrayList.add(movie);
             }
             return movieArrayList;
