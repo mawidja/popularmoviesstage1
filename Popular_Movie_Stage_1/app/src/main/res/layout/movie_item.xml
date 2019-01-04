@@ -2,22 +2,21 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <LinearLayout
+    <!--<LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
-    <TextView
+        android:orientation="vertical">-->
+    <!--<TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="top"
-        android:id="@+id/tv_movie_title"
-        android:padding="10dp"/>
+        android:id="@+id/tv_movie_title"/>-->
 
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scaleType="fitXY"
+        android:scaleType="centerCrop"
         android:adjustViewBounds="true"
         android:id="@+id/iv_movie_poster"/>
-    </LinearLayout>
+    <!--</LinearLayout>-->
 </FrameLayout>

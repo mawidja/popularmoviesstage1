@@ -58,19 +58,19 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
         @BindView(R.id.iv_movie_poster)
         ImageView imageView;*/
 
-        TextView textView;
+        //TextView textView;
         ImageView imageView;
 
         public MovieViewHolder(View itemView){
             super(itemView);
             //ButterKnife.bind(this,itemView);
-            textView = (TextView)itemView.findViewById(R.id.tv_movie_title);
+            //textView = (TextView)itemView.findViewById(R.id.tv_movie_title);
             imageView =(ImageView)itemView.findViewById(R.id.iv_movie_poster);
         }
 
         // method for convenience to bind things up!
         public void bind(Movie movieDetails){
-            textView.setText(movieDetails.getTitle());
+            //textView.setText(movieDetails.getTitle());
 
             //Uri builtUri = Uri.parse(IMAGE_BASE_URL).buildUpon()
             //        .appendPath(movieDetails.getPoster_path())
