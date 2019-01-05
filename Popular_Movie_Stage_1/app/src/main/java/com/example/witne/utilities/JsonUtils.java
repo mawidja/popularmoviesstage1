@@ -13,11 +13,11 @@ public class JsonUtils {
 
     public static final String TAG = JsonUtils.class.getSimpleName();
 
-    public static List<Movie> parseMovieJson(String json){
+    public static ArrayList<Movie> parseMovieJson(String json){
 
         Movie movie;
         //Movie movie = new Movie();
-        List<Movie> movieArrayList = new ArrayList<>();
+        ArrayList<Movie> movieArrayList = new ArrayList<>();
 
         try {
             JSONObject baseName = new JSONObject(json);

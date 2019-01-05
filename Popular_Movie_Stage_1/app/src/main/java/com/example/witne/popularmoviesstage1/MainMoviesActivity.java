@@ -13,6 +13,7 @@ import com.example.witne.utilities.JsonUtils;
 import com.example.witne.utilities.NetworkUtils;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 //import butterknife.BindView;
 //import butterknife.ButterKnife;
@@ -22,9 +23,8 @@ public class MainMoviesActivity extends AppCompatActivity {
     private final static String TAG = MainMoviesActivity.class.getSimpleName();
 
     private String popularOrTopRatedMovies;
-
-    private List<Movie> movieList;
-
+    private ArrayList<Movie> movieList;
+    private MovieAdapter movieAdapter;
     /*@BindView(R.id.rv_popularMovies)
     RecyclerView recyclerView;
 
@@ -40,8 +40,8 @@ public class MainMoviesActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main_movies);
         //ButterKnife.bind(this);
 
-        recyclerView = (RecyclerView)findViewById(R.id.rv_popularMovies);
-        progressBar = (ProgressBar)findViewById(R.id.pb_loading_indicator);
+        recyclerView = findViewById(R.id.rv_popularMovies);
+        progressBar = findViewById(R.id.pb_loading_indicator);
 
         //define layout manager for the recycler view
         GridLayoutManager gridLayoutManager1 = new GridLayoutManager(this,2);
@@ -49,6 +49,9 @@ public class MainMoviesActivity extends AppCompatActivity {
 
         //to improve performance of the recycler view
         recyclerView.setHasFixedSize(true);
+
+        movieAdapter = new MovieAdapter(new ArrayList<Movie>());
+        recyclerView.setAdapter(movieAdapter);
 
         //build the url string
         //popularOrTopRatedMovies = "popular";
@@ -61,7 +64,7 @@ public class MainMoviesActivity extends AppCompatActivity {
     }
 
     //Async inner class to fetch network data
-    public class FecthMovieTask extends AsyncTask<URL, Void, String>{
+    public class FecthMovieTask extends AsyncTask<URL, Void, Void>{
 
         @Override
         protected void onPreExecute(){
@@ -70,25 +73,32 @@ public class MainMoviesActivity extends AppCompatActivity {
         }
 
         @Override
-        protected String doInBackground(URL... params){
+        protected Void doInBackground(URL... params){
 
             URL searchUrl = params[0];
-            String jsonData = null;
+            String jsonData;
+            movieList = new ArrayList<>();
             try {
                 jsonData = NetworkUtils.fetchData(searchUrl);
-                return jsonData;
+                movieList = JsonUtils.parseMovieJson(jsonData);
+                //return jsonData;
             }catch (IOException e){
                 e.printStackTrace();
             }
+            //return jsonData;
             return null;
         }
 
         @Override
-        protected void onPostExecute(String jsonData ){
-            super.onPostExecute(jsonData);
+        protected void onPostExecute(Void v ){
+            //super.onPostExecute(jsonData);
+            super.onPostExecute(v);
             progressBar.setVisibility(View.INVISIBLE);
-            MovieAdapter movieAdapter = new MovieAdapter(JsonUtils.parseMovieJson(jsonData));
-            recyclerView.setAdapter(movieAdapter);
+            //MovieAdapter movieAdapter = new MovieAdapter(JsonUtils.parseMovieJson(jsonData));
+            //recyclerView.setAdapter(movieAdapter);
+            //movieList = JsonUtils.parseMovieJson(jsonData);
+            //movieAdapter = new MovieAdapter(new ArrayList<Movie>());
+            movieAdapter.setMovieAdapter(movieList);
         }
     }
 }
