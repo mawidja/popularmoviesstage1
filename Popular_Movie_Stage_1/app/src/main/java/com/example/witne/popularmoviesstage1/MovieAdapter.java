@@ -20,7 +20,6 @@ import java.util.List;
 public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHolder> {
 
     private ArrayList<Movie> movieList;
-    private static final String IMAGE_BASE_URL = "https://image.tmdb.org/t/p/w185";
 
     public MovieAdapter(ArrayList<Movie> movieList){
         this.movieList = movieList;
@@ -42,12 +41,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
     @Override
     public void onBindViewHolder(MovieAdapter.MovieViewHolder movieViewHolder, int position){
         Movie movie = movieList.get(position);
-
-        //movieViewHolder.bind(movie);
-        String posterPath = IMAGE_BASE_URL + movie.getPoster_path();
-        Picasso.get()
-                .load(posterPath)
-                .into(movieViewHolder.imageView);
+        movieViewHolder.bind(movie);
     }
 
     @Override
@@ -73,12 +67,12 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
         }
 
         // method for convenience to bind things up!
-        /*public void bind(Movie movieDetails){
+        public void bind(Movie movieDetails){
             String posterPath = IMAGE_BASE_URL + movieDetails.getPoster_path();
             Picasso.get()
                     .load(posterPath)
                     .into(imageView);
-        }*/
+        }
 
     }
 }
