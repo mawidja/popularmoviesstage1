@@ -11,7 +11,7 @@ public class Movie implements Parcelable {
     }
 
     public void setPoster_path(String poster_path) {
-        this.poster_path = poster_path;
+        this.poster_path = IMAGE_BASE_URL + poster_path;
     }
 
     public String getMovie_overview() {
@@ -54,14 +54,6 @@ public class Movie implements Parcelable {
         this.title = title;
     }
 
-   /* public String getBack_drop_path() {
-        return back_drop_path;
-    }
-
-    public void setBack_drop_path(String back_drop_path) {
-        this.back_drop_path = back_drop_path;
-    }*/
-
     public double getPopularity() {
         return popularity;
     }
@@ -82,12 +74,11 @@ public class Movie implements Parcelable {
     private int movieId;
     private String original_title;
     private String title;
-    //private String poster_path;
     private double popularity;
-    //private int vote_count;
     private double vote_average;
     private String poster_path;
     private String movie_overview;
+    private static final String IMAGE_BASE_URL = "https://image.tmdb.org/t/p/w185";
 
     //No args constructor
     public Movie(){
@@ -103,7 +94,7 @@ public class Movie implements Parcelable {
         this.movieId = movieId;
         this.original_title = original_title;
         this.title = title;
-        this.poster_path = poster_path;
+        this.poster_path = IMAGE_BASE_URL + poster_path;
         this.popularity = popularity;
         this.vote_average = vote_average;
         this.movie_overview = movie_overview;

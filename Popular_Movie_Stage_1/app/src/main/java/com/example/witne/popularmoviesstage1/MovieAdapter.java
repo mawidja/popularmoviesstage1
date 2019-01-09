@@ -68,7 +68,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
     //inner class for movie holder
     public class MovieViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        private static final String IMAGE_BASE_URL = "https://image.tmdb.org/t/p/w185";
+        //private static final String IMAGE_BASE_URL = "https://image.tmdb.org/t/p/w185";
 
         public final ImageView imageView;
 
@@ -80,9 +80,9 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
 
         // method for convenience to bind things up!
         public void bind(Movie movieDetails){
-            String posterPath = IMAGE_BASE_URL + movieDetails.getPoster_path();
+            //String posterPath = IMAGE_BASE_URL + movieDetails.getPoster_path();
             Picasso.get()
-                    .load(posterPath)
+                    .load(movieDetails.getPoster_path())
                     .into(imageView);
         }
 

@@ -2,4 +2,6 @@
     <string name="app_name">Popular Movies</string>
     <string name="popular_movies">Popular Movies</string>
     <string name="top_rated_movies">Top Rated Movies</string>
+
+    <string name="movie_rating_total"> %1$s /10</string>
 </resources>

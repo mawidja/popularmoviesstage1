@@ -18,7 +18,7 @@ public class DetailMovieActivity extends AppCompatActivity {
     private TextView tv_movie_rating;
     private TextView tv_movie_overview;
     private Movie movie;
-    private static final String IMAGE_BASE_URL = "https://image.tmdb.org/t/p/w185";
+    //private static final String IMAGE_BASE_URL = "https://image.tmdb.org/t/p/w185";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,16 +38,17 @@ public class DetailMovieActivity extends AppCompatActivity {
 
         if(movie != null){
             tv_movie_title.setText(movie.getTitle());
-            String posterPath = IMAGE_BASE_URL + movie.getPoster_path();
+            //String posterPath = IMAGE_BASE_URL + movie.getPoster_path();
             Picasso.get()
-                    .load(posterPath)
+                    .load(movie.getPoster_path())
                     .into(iv_movie_poster);
 
             tv_movie_release_date.setText((movie.getRelease_date()));
             //tv_movie_rating.setText(movie.getVote_average());
-            tv_movie_rating.setText(String.valueOf(movie.getVote_average()));
+            //tv_movie_rating.setText(String.valueOf(movie.getVote_average())+ " /10");
+            String movieRating = getString(R.string.movie_rating_total,String.valueOf(movie.getVote_average()));
+            tv_movie_rating.setText(movieRating);
             tv_movie_overview.setText(movie.getMovie_overview());
-
         }
 
     }
