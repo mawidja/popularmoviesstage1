@@ -25,11 +25,11 @@ public class DetailMovieActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_movie);
 
-        //tv_movie_title = findViewById(R.id.tv_movie_title);
+        tv_movie_title = findViewById(R.id.tv_movie_title);
         iv_movie_poster = findViewById(R.id.iv_movie_poster);
         tv_movie_release_date = findViewById(R.id.tv_movie_release_date);
         tv_movie_rating = findViewById(R.id.tv_movie_vote_average);
-        //tv_movie_overview = findViewById(R.id.tv_movie_overview);
+        tv_movie_overview = findViewById(R.id.tv_movie_overview);
 
         //get movie details from the intent that started the activity
         //Intent intentStartedThisActivity = getIntent();
@@ -37,8 +37,7 @@ public class DetailMovieActivity extends AppCompatActivity {
         movie = movieData.getParcelable("Movie_Details");
 
         if(movie != null){
-            //tv_movie_title.setText(movie.getTitle());
-
+            tv_movie_title.setText(movie.getTitle());
             String posterPath = IMAGE_BASE_URL + movie.getPoster_path();
             Picasso.get()
                     .load(posterPath)
@@ -47,7 +46,7 @@ public class DetailMovieActivity extends AppCompatActivity {
             tv_movie_release_date.setText((movie.getRelease_date()));
             //tv_movie_rating.setText(movie.getVote_average());
             tv_movie_rating.setText(String.valueOf(movie.getVote_average()));
-            //tv_movie_overview.setText(movie.getMovie_overview());*/
+            tv_movie_overview.setText(movie.getMovie_overview());
 
         }
 
