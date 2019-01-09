@@ -2,26 +2,30 @@ package com.example.witne.popularmoviesstage1;
 
 //import android.graphics.Movie;
 import com.example.witne.data.Movie;
+
+import android.content.Intent;
 import android.os.AsyncTask;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.Toast;
+
 import com.example.witne.utilities.JsonUtils;
 import com.example.witne.utilities.NetworkUtils;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+//import com.example.witne.popularmoviesstage1.MovieAdapter.MovieAdapterOnClickHandler;
 import java.util.List;
 //import butterknife.BindView;
 //import butterknife.ButterKnife;
 
-public class MainMoviesActivity extends AppCompatActivity {
+public class MainMoviesActivity extends AppCompatActivity implements MovieAdapter.ListItemClickLister {
 
     private final static String TAG = MainMoviesActivity.class.getSimpleName();
 
@@ -55,7 +59,7 @@ public class MainMoviesActivity extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
 
         //initialize adapter and set to the recycler view object
-        movieAdapter = new MovieAdapter(new ArrayList<Movie>());
+        movieAdapter = new MovieAdapter(new ArrayList<Movie>(),this);
         recyclerView.setAdapter(movieAdapter);
 
         //build the url string - default to 'popular movies'
@@ -66,6 +70,14 @@ public class MainMoviesActivity extends AppCompatActivity {
         //fetch data on separate thread
         // and initialize the recycler viewer with data from movie adapter
         new  FecthMovieTask().execute(movieSearch);
+    }
+
+    @Override
+    public void onListItemClick(Movie movie) {
+        //Toast.makeText(this.getBaseContext(),"List item clicked!",Toast.LENGTH_LONG).show();
+        Intent startDetailMovieIntent = new Intent(this, DetailMovieActivity.class);
+        startDetailMovieIntent.putExtra("Movie_Details",movie);
+        startActivity(startDetailMovieIntent);
     }
 
     @Override

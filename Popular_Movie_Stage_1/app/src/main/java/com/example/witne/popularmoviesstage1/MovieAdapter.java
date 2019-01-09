@@ -3,26 +3,37 @@ package com.example.witne.popularmoviesstage1;
 import android.content.Context;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.net.Uri;
+import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
+
 import com.example.witne.data.Movie;
 import com.squareup.picasso.Picasso;
-
 import java.util.ArrayList;
-import java.util.List;
-//import butterknife.BindView;
-//import butterknife.ButterKnife;
+
 
 public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHolder> {
 
     private ArrayList<Movie> movieList;
+    private Movie movie;
+   //private MovieAdapterOnClickHandler movieAdapterOnClickHandler;
+    private ListItemClickLister listItemClickLister;
 
-    public MovieAdapter(ArrayList<Movie> movieList){
+    //interface to handle movie click event
+    /*public interface MovieAdapterOnClickHandler{
+        void onClick(Movie  movie);
+    }*/
+
+    public interface ListItemClickLister{
+        void onListItemClick(Movie movie);
+    }
+
+    public MovieAdapter(ArrayList<Movie> movieList, ListItemClickLister listItemClickLister){
         this.movieList = movieList;
+        this.listItemClickLister = listItemClickLister;
     }
 
     @Override
@@ -40,7 +51,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
 
     @Override
     public void onBindViewHolder(MovieAdapter.MovieViewHolder movieViewHolder, int position){
-        Movie movie = movieList.get(position);
+        movie = movieList.get(position);
         movieViewHolder.bind(movie);
     }
 
@@ -55,7 +66,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
     }
 
     //inner class for movie holder
-    public class MovieViewHolder extends RecyclerView.ViewHolder{
+    public class MovieViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         private static final String IMAGE_BASE_URL = "https://image.tmdb.org/t/p/w185";
 
@@ -64,6 +75,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
         public MovieViewHolder(View itemView){
             super(itemView);
             imageView = itemView.findViewById(R.id.iv_movie_poster);
+            itemView.setOnClickListener(this);
         }
 
         // method for convenience to bind things up!
@@ -74,5 +86,13 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
                     .into(imageView);
         }
 
+        @Override
+        public void onClick(View view) {
+            int adapterPosition = getAdapterPosition();
+            movie = movieList.get(adapterPosition);
+            //this.listItemClickLister..onClick(movie);
+            //view.setOnClickListener(listItemClickLister);
+            listItemClickLister.onListItemClick(movie);
+        }
     }
 }
