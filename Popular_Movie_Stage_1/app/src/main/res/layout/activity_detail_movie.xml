@@ -10,9 +10,9 @@
         android:layout_width = "match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp"
-        android:paddingTop="10dp">
+        android:paddingLeft="@dimen/layout_padding_dimensions"
+        android:paddingRight="@dimen/layout_padding_dimensions"
+        android:paddingTop="@dimen/gv_vertical_spacing">
 
         <TextView
             android:layout_width="match_parent"
@@ -20,7 +20,7 @@
             android:id="@+id/tv_movie_title"
             android:textSize="36sp"
             android:background="@color/colorPrimaryDark"
-            android:paddingTop="10dp"/>
+            android:paddingTop="@dimen/gv_horizontal_spacing"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -28,23 +28,23 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:layout_width="140dp"
-                android:layout_height="210dp"
+                android:layout_width="@dimen/image_view_width"
+                android:layout_height="@dimen/image_view_height"
                 android:id="@+id/iv_movie_poster"
                 android:scaleType="fitXY"
-                android:paddingTop="10dp"/>
+                android:paddingTop="@dimen/gv_horizontal_spacing"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
-                android:padding="10dp">
+                android:padding="@dimen/gv_horizontal_spacing">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingTop="20dp"
-                    android:text="Released Date:"
+                    android:paddingTop="@dimen/padding_dimensions"
+                    android:text="@string/movie_detail_release_date"
                     android:textStyle="bold"/>
 
                 <TextView
@@ -55,8 +55,8 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingTop="20dp"
-                    android:text="Rating:"
+                    android:paddingTop="@dimen/padding_dimensions"
+                    android:text="@string/movie_detail_movie_rating"
                     android:textStyle="bold"/>
 
                 <TextView
@@ -70,6 +70,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/tv_movie_overview"
-            android:paddingTop="10dp"/>
+            android:paddingTop="@dimen/gv_horizontal_spacing"/>
     </LinearLayout>
 </ScrollView>

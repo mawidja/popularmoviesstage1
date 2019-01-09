@@ -14,8 +14,8 @@
 
     <ProgressBar
         android:id="@+id/pb_loading_indicator"
-        android:layout_height="60dp"
-        android:layout_width="60dp"
+        android:layout_height="@dimen/pb_height"
+        android:layout_width="@dimen/pb_width"
         android:layout_gravity="center"
         android:visibility="invisible" />
 
