@@ -6,6 +6,7 @@
 
     <!--For Main Movie Activity -->
     <dimen name="pb_layout_margin">8dp</dimen>
+    <!--<dimen name="rv_layout_manager_columns">2</dimen>-->
 
     <!--For Detail Movie Activity -->
     <dimen name="layout_padding_dimensions">16dp</dimen>

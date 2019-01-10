@@ -68,12 +68,7 @@ public class MainMoviesActivity extends AppCompatActivity implements MovieAdapte
         //build the url string - default to 'popular movies'
         popularOrTopRatedMovies = "popular";
         //popularOrTopRatedMovies = "top_rated";
-        movieSearch = NetworkUtils.buildUrl(popularOrTopRatedMovies);
-
-        //fetch data on separate thread
-        // and initialize the recycler viewer with data from movie adapter
-        new  FecthMovieTask().execute(movieSearch);
-
+        startMovieSearch(popularOrTopRatedMovies);
     }
 
     private void showErrorMessage(){
@@ -89,6 +84,12 @@ public class MainMoviesActivity extends AppCompatActivity implements MovieAdapte
         movieAdapter.setMovieAdapter(movieList);
     }
 
+    private void startMovieSearch(String popularOrTopRatedMovies){
+        movieSearch = NetworkUtils.buildUrl(popularOrTopRatedMovies);
+        //fetch data on separate thread
+        // and initialize the recycler viewer with data from movie adapter
+        new  FecthMovieTask().execute(movieSearch);
+    }
     @Override
     public void onListItemClick(Movie movie) {
         //Toast.makeText(this.getBaseContext(),"List item clicked!",Toast.LENGTH_LONG).show();
@@ -109,14 +110,12 @@ public class MainMoviesActivity extends AppCompatActivity implements MovieAdapte
         int itemThatWasSelected = menuItem.getItemId();
         if(itemThatWasSelected == R.id.action_popular_movies){
             popularOrTopRatedMovies = "popular";
-            movieSearch = NetworkUtils.buildUrl(popularOrTopRatedMovies);
-            new  FecthMovieTask().execute(movieSearch);
+            startMovieSearch(popularOrTopRatedMovies);
             return true;
         }
         if(itemThatWasSelected == R.id.action_top_rated_movies){
             popularOrTopRatedMovies = "top_rated";
-            movieSearch = NetworkUtils.buildUrl(popularOrTopRatedMovies);
-            new  FecthMovieTask().execute(movieSearch);
+            startMovieSearch(popularOrTopRatedMovies);
             return true;
         }
         return super.onOptionsItemSelected(menuItem);
