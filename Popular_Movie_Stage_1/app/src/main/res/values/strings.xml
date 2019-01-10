@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Popular Movies</string>
 
-    <string name="error_message">Network connection not established</string>
+    <string name="error_message">Failed to get results, please try again later.</string>
 
     <!-- For Main Movie Activity menu optionns -->
     <string name="popular_movies">Popular Movies</string>

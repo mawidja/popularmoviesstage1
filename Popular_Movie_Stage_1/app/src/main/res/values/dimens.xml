@@ -4,9 +4,8 @@
     <dimen name="gv_vertical_spacing">10dp</dimen>
     <dimen name="gv_horizontal_spacing">10dp</dimen>
 
-    <!--For Main Movies Activity -->
-    <dimen name="pb_width">60dp</dimen>
-    <dimen name="pb_height">60dp</dimen>
+    <!--For Main Movie Activity -->
+    <dimen name="pb_layout_margin">8dp</dimen>
 
     <!--For Detail Movie Activity -->
     <dimen name="layout_padding_dimensions">16dp</dimen>

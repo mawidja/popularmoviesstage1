@@ -13,6 +13,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.witne.utilities.JsonUtils;
@@ -39,6 +40,7 @@ public class MainMoviesActivity extends AppCompatActivity implements MovieAdapte
     @BindView(R.id.pb_loading_indicator)
     ProgressBar progressBar;*/
 
+    private TextView tv_error_message;
     private RecyclerView recyclerView;
     private ProgressBar progressBar;
 
@@ -48,6 +50,7 @@ public class MainMoviesActivity extends AppCompatActivity implements MovieAdapte
         setContentView(R.layout.activity_main_movies);
         //ButterKnife.bind(this);
 
+        tv_error_message = findViewById(R.id.tv_error_message);
         recyclerView = findViewById(R.id.rv_popularMovies);
         progressBar = findViewById(R.id.pb_loading_indicator);
 
@@ -70,6 +73,20 @@ public class MainMoviesActivity extends AppCompatActivity implements MovieAdapte
         //fetch data on separate thread
         // and initialize the recycler viewer with data from movie adapter
         new  FecthMovieTask().execute(movieSearch);
+
+    }
+
+    private void showErrorMessage(){
+        progressBar.setVisibility(View.INVISIBLE);
+        tv_error_message.setVisibility(View.VISIBLE);
+    }
+
+    private void showJSONData(String jsonData){
+        progressBar.setVisibility(View.INVISIBLE);
+        tv_error_message.setVisibility(View.INVISIBLE);
+        movieList = new ArrayList<>();
+        movieList = JsonUtils.parseMovieJson(jsonData);
+        movieAdapter.setMovieAdapter(movieList);
     }
 
     @Override
@@ -105,7 +122,7 @@ public class MainMoviesActivity extends AppCompatActivity implements MovieAdapte
         return super.onOptionsItemSelected(menuItem);
     }
     //Async inner class to fetch network data
-    public class FecthMovieTask extends AsyncTask<URL, Void, Void>{
+    public class FecthMovieTask extends AsyncTask<URL, Void, String>{
 
         @Override
         protected void onPreExecute(){
@@ -114,25 +131,32 @@ public class MainMoviesActivity extends AppCompatActivity implements MovieAdapte
         }
 
         @Override
-        protected Void doInBackground(URL... params){
+        protected String doInBackground(URL... params){
 
             URL searchUrl = params[0];
-            String jsonData;
-            movieList = new ArrayList<>();
+            String jsonData = null;
+            //movieList = new ArrayList<>();
             try {
                 jsonData = NetworkUtils.fetchData(searchUrl);
-                movieList = JsonUtils.parseMovieJson(jsonData);
+                //movieList = JsonUtils.parseMovieJson(jsonData);
             }catch (IOException e){
                 e.printStackTrace();
             }
-            return null;
+            return jsonData;
         }
 
         @Override
-        protected void onPostExecute(Void v ){
-            super.onPostExecute(v);
+        protected void onPostExecute(String jsonData ){
             progressBar.setVisibility(View.INVISIBLE);
-            movieAdapter.setMovieAdapter(movieList);
+            if(jsonData != null && !jsonData.equals("")) {
+                super.onPostExecute(jsonData);
+                //movieList = new ArrayList<>();
+                //movieList = JsonUtils.parseMovieJson(jsonData);
+                //movieAdapter.setMovieAdapter(movieList);
+                showJSONData(jsonData);
+            }else{
+                showErrorMessage();
+            }
         }
     }
 }
