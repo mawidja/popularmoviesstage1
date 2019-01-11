@@ -10,6 +10,8 @@
         android:layout_height="wrap_content"
         android:id="@+id/bt_movie_trailer"
         android:drawableLeft="@drawable/ic_play_arrow_black_48dp"
-        android:text="@string/movie_trailer_button_text"/>
+        android:background="@color/colorPrimaryDark"/>
+        <!--style="@style/Base.Widget.AppCompat.Button.Borderless"
+        android:background="@color/colorPrimaryDark"/>-->
 
 </LinearLayout>
