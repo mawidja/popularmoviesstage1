@@ -48,7 +48,8 @@ public class JsonUtils {
 
         try {
             JSONObject baseName = new JSONObject(json);
-            JSONArray results = baseName.getJSONArray("results");
+            //JSONArray results = baseName.getJSONArray("results");
+            JSONArray results = baseName.optJSONArray("results");
 
             for(int i=0; i<results.length();i++){
                 JSONObject jsonObject = results.getJSONObject(i);

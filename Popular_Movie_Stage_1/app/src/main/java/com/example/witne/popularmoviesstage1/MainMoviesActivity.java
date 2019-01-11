@@ -67,7 +67,6 @@ public class MainMoviesActivity extends AppCompatActivity implements MovieAdapte
 
         //build the url string - default to 'popular movies'
         popularOrTopRatedMovies = "popular";
-        //popularOrTopRatedMovies = "top_rated";
         startMovieSearch(popularOrTopRatedMovies);
     }
 
