@@ -6,19 +6,26 @@
     android:layout_height="match_parent"
     tools:context=".DetailMovieActivity">
 
-    <LinearLayout
+    <!--<LinearLayout
         android:layout_width = "match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:paddingLeft="@dimen/layout_padding_dimensions"
         android:paddingRight="@dimen/layout_padding_dimensions"
-        android:paddingTop="@dimen/gv_vertical_spacing">
+        android:paddingTop="@dimen/gv_vertical_spacing">-->
+
+    <LinearLayout
+        android:layout_width = "match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/layout_padding_dimensions"
+        android:paddingRight="@dimen/layout_padding_dimensions">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/tv_movie_title"
-            android:textSize="36sp"
+            android:textSize="@dimen/tv_size"
             android:background="@color/colorPrimaryDark"
             android:paddingTop="@dimen/gv_horizontal_spacing"/>
 
@@ -71,5 +78,19 @@
             android:layout_height="wrap_content"
             android:id="@+id/tv_movie_overview"
             android:paddingTop="@dimen/gv_horizontal_spacing"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/movie_trailer_tv"
+            android:paddingTop="@dimen/gv_horizontal_spacing"
+            android:textSize="20sp"
+            android:textStyle="bold"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/rv_movie_trailer">
+        </androidx.recyclerview.widget.RecyclerView>
     </LinearLayout>
 </ScrollView>

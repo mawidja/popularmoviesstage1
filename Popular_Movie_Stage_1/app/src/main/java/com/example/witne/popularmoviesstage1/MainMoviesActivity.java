@@ -134,10 +134,8 @@ public class MainMoviesActivity extends AppCompatActivity implements MovieAdapte
 
             URL searchUrl = params[0];
             String jsonData = null;
-            //movieList = new ArrayList<>();
             try {
                 jsonData = NetworkUtils.fetchData(searchUrl);
-                //movieList = JsonUtils.parseMovieJson(jsonData);
             }catch (IOException e){
                 e.printStackTrace();
             }
@@ -149,9 +147,6 @@ public class MainMoviesActivity extends AppCompatActivity implements MovieAdapte
             progressBar.setVisibility(View.INVISIBLE);
             if(jsonData != null && !jsonData.equals("")) {
                 super.onPostExecute(jsonData);
-                //movieList = new ArrayList<>();
-                //movieList = JsonUtils.parseMovieJson(jsonData);
-                //movieAdapter.setMovieAdapter(movieList);
                 showJSONData(jsonData);
             }else{
                 showErrorMessage();
