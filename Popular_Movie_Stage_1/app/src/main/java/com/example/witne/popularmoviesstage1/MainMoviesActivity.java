@@ -31,7 +31,7 @@ public class MainMoviesActivity extends AppCompatActivity implements MovieAdapte
     private final static String TAG = MainMoviesActivity.class.getSimpleName();
 
     private String popularOrTopRatedMovies;
-    private URL movieSearch;
+    private URL movieSearchURL;
     private ArrayList<Movie> movieList;
     private MovieAdapter movieAdapter;
     /*@BindView(R.id.rv_popularMovies)
@@ -62,7 +62,8 @@ public class MainMoviesActivity extends AppCompatActivity implements MovieAdapte
         recyclerView.setHasFixedSize(true);
 
         //initialize adapter and set to the recycler view object
-        movieAdapter = new MovieAdapter(new ArrayList<Movie>(),this);
+        movieList = new ArrayList<>();
+        movieAdapter = new MovieAdapter(movieList,this);
         recyclerView.setAdapter(movieAdapter);
 
         //build the url string - default to 'popular movies'
@@ -78,16 +79,16 @@ public class MainMoviesActivity extends AppCompatActivity implements MovieAdapte
     private void showJSONData(String jsonData){
         progressBar.setVisibility(View.INVISIBLE);
         tv_error_message.setVisibility(View.INVISIBLE);
-        movieList = new ArrayList<>();
+        //movieList = new ArrayList<>();
         movieList = JsonUtils.parseMovieJson(jsonData);
         movieAdapter.setMovieAdapter(movieList);
     }
 
     private void startMovieSearch(String popularOrTopRatedMovies){
-        movieSearch = NetworkUtils.buildUrl(popularOrTopRatedMovies);
+        movieSearchURL = NetworkUtils.buildUrl(popularOrTopRatedMovies);
         //fetch data on separate thread
         // and initialize the recycler viewer with data from movie adapter
-        new  FecthMovieTask().execute(movieSearch);
+        new  FecthMovieTask().execute(movieSearchURL);
     }
     @Override
     public void onListItemClick(Movie movie) {

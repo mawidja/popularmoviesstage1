@@ -16,9 +16,15 @@ public class MovieTrailerAdapter extends RecyclerView.Adapter<MovieTrailerAdapte
 
     private ArrayList<Trailer> movieTrailers;
     private Trailer trailer;
+    private ListItemClickListener trailerListItemClicked;
 
-    public MovieTrailerAdapter(ArrayList<Trailer> movieTrailers){
+    public interface ListItemClickListener{
+        void onListItemClick(Trailer trailer);
+    }
+
+    public MovieTrailerAdapter(ArrayList<Trailer> movieTrailers, ListItemClickListener trailerListItemClicked){
         this.movieTrailers = movieTrailers;
+        this.trailerListItemClicked = trailerListItemClicked;
     }
 
     @Override
@@ -48,7 +54,7 @@ public class MovieTrailerAdapter extends RecyclerView.Adapter<MovieTrailerAdapte
         notifyDataSetChanged();
     }
 
-    public class MovieTrailerHolderAdapter extends RecyclerView.ViewHolder{
+    public class MovieTrailerHolderAdapter extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         public Button bt_movie_trailer;
 
@@ -56,11 +62,21 @@ public class MovieTrailerAdapter extends RecyclerView.Adapter<MovieTrailerAdapte
             super(itemView);
             bt_movie_trailer = itemView.findViewById(R.id.bt_movie_trailer);
             //itemView.setOnClickListener(this);
+            bt_movie_trailer.setOnClickListener(this);
+            //itemView.setOnClickListener(this);
         }
 
         // method for convenience to bind things up!
         public void bind(Trailer movieTrailer){
             bt_movie_trailer.setText(movieTrailer.getMovieName());
+            //String movieKey = movieTrailer.getMovieKey();
+        }
+
+        @Override
+        public void onClick(View view){
+            int adapterPosition = getAdapterPosition();
+            trailer = movieTrailers.get(adapterPosition);
+            trailerListItemClicked.onListItemClick(trailer);
         }
 
     }

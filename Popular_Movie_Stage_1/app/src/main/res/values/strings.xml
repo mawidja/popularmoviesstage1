@@ -13,6 +13,6 @@
     <string name="movie_rating_total"> %1$s /10</string>
 
     <!--For Movie Trailer layout -->
-    <string name="movie_trailer_tv">Trailer</string>
+    <string name="movie_trailer_tv">Trailers</string>
     <string name="movie_trailer_button_text">Movie Trailer</string>
 </resources>

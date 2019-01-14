@@ -84,7 +84,8 @@
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/rv_movie_trailer">
+            android:id="@+id/rv_movie_trailer"
+            android:paddingBottom="@dimen/gv_horizontal_spacing">
         </androidx.recyclerview.widget.RecyclerView>
     </LinearLayout>
 </ScrollView>
