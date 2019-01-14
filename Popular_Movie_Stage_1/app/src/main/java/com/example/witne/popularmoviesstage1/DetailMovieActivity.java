@@ -4,7 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -31,6 +34,7 @@ public class DetailMovieActivity extends AppCompatActivity implements MovieTrail
     private TextView tv_movie_rating;
     private TextView tv_movie_overview;
     private Movie movie;
+    private TextView tv_trailers;
 
     private RecyclerView rv_movie_trailer;
     private MovieTrailerAdapter movieTrailerAdapter;
@@ -51,6 +55,8 @@ public class DetailMovieActivity extends AppCompatActivity implements MovieTrail
         tv_movie_release_date = findViewById(R.id.tv_movie_release_date);
         tv_movie_rating = findViewById(R.id.tv_movie_vote_average);
         tv_movie_overview = findViewById(R.id.tv_movie_overview);
+        tv_trailers = findViewById(R.id.tv_trailers);
+        //tv_trailer_error_message = findViewById(R.id.tv_trailer_error_message);
 
         //set the movie trailer recycler view
         rv_movie_trailer = findViewById(R.id.rv_movie_trailer);
@@ -80,9 +86,26 @@ public class DetailMovieActivity extends AppCompatActivity implements MovieTrail
             tv_movie_rating.setText(movieRating);
             tv_movie_overview.setText(movie.getMovie_overview());
 
-            startMovieTrailerSearch(String.valueOf(movie.getMovieId()));
+            if(isNetworkAvailable()) {
+                startMovieTrailerSearch(String.valueOf(movie.getMovieId()));
+            }else{
+                showErrorMessage();
+            }
+
         }
 
+    }
+
+    private boolean isNetworkAvailable(){
+        ConnectivityManager cm = (ConnectivityManager)getBaseContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = cm.getActiveNetworkInfo();
+        boolean isNetworkAvailable = (networkInfo != null) && (networkInfo.isConnected());
+        return isNetworkAvailable;
+    }
+
+    private void showErrorMessage(){
+        //tv_trailer_error_message.setVisibility(View.VISIBLE);
+        tv_trailers.setText(getString(R.string.movie_trailer_error_message));
     }
 
     private void startMovieTrailerSearch(String movieId ){
@@ -136,8 +159,13 @@ public class DetailMovieActivity extends AppCompatActivity implements MovieTrail
 
         @Override
         protected void onPostExecute(String jsonData ){
-            super.onPostExecute(jsonData);
-            showJSONData(jsonData);
+            //tv_trailer_error_message.setVisibility(View.INVISIBLE);
+            if(jsonData != null && !jsonData.equals("")) {
+                super.onPostExecute(jsonData);
+                showJSONData(jsonData);
+            }else{
+                showErrorMessage();
+            }
         }
     }
 }

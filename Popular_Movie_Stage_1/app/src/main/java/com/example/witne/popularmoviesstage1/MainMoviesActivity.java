@@ -3,7 +3,10 @@ package com.example.witne.popularmoviesstage1;
 //import android.graphics.Movie;
 import com.example.witne.data.Movie;
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
@@ -66,9 +69,21 @@ public class MainMoviesActivity extends AppCompatActivity implements MovieAdapte
         movieAdapter = new MovieAdapter(movieList,this);
         recyclerView.setAdapter(movieAdapter);
 
-        //build the url string - default to 'popular movies'
-        popularOrTopRatedMovies = "popular";
-        startMovieSearch(popularOrTopRatedMovies);
+        //check for network connection
+        if(isNetworkAvailable()) {
+            //build the url string - default to 'popular movies'
+            popularOrTopRatedMovies = "popular";
+            startMovieSearch(popularOrTopRatedMovies);
+        }else{
+            showErrorMessage();
+        }
+    }
+
+    private boolean isNetworkAvailable(){
+        ConnectivityManager cm = (ConnectivityManager)getBaseContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = cm.getActiveNetworkInfo();
+        boolean isNetworkAvailable = (networkInfo != null) && (networkInfo.isConnected());
+        return isNetworkAvailable;
     }
 
     private void showErrorMessage(){
