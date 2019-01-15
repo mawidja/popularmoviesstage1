@@ -21,14 +21,10 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'com.squareup.picasso:picasso:2.71828'
-    //implementation 'androidx.appcompat:appcompat:1.0.0'
-    //implementation 'androidx.constraintlayout:constraintlayout:1.1.2'
-    //implementation 'androidx.recyclerview:recyclerview:1.0.0'
-
-    implementation 'androidx.appcompat:appcompat:1.1.0-alpha01'
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.0-alpha3'
-    implementation 'androidx.recyclerview:recyclerview:1.1.0-alpha01'
-
+    implementation 'androidx.appcompat:appcompat:1.0.2'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.2'
+    implementation 'androidx.recyclerview:recyclerview:1.0.0'
+    
     //Lightweight Butter knife API to inject views in Android components -
     // could not use the API, had many issues, when trying to run on my Marshmallow device
     //implementation 'com.jakewharton:butterknife:10.0.0'
