@@ -10,8 +10,6 @@ import java.util.ArrayList;
 
 public class JsonUtils {
 
-    //public static final String TAG = JsonUtils.class.getSimpleName();
-
     //for the movie adapter
     public static ArrayList<Movie> parseMovieJson(String json){
 

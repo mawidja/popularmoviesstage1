@@ -27,8 +27,6 @@ import java.util.Objects;
 
 public class DetailMovieActivity extends AppCompatActivity implements MovieTrailerAdapter.ListItemClickListener {
 
-    //private static final String IMAGE_BASE_URL = "https://image.tmdb.org/t/p/w185";
-    //private URL movieSearchURL;
     private MovieTrailerAdapter movieTrailerAdapter;
     private TextView tv_trailers;
     private ArrayList<Trailer> trailerList;
@@ -38,25 +36,12 @@ public class DetailMovieActivity extends AppCompatActivity implements MovieTrail
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_movie);
 
-        //private ImageView iv_movie_poster;
-        //private TextView tv_movie_release_date;
-        //private TextView tv_movie_rating;
-        //private TextView tv_movie_overview;
-        //private Movie movie;
-        //private TextView tv_trailers;
-
-        //private RecyclerView rv_movie_trailer;
-        //private MovieTrailerAdapter movieTrailerAdapter;
-
-        //private ArrayList<Trailer> trailerList;
-
         TextView tv_movie_title = findViewById(R.id.tv_movie_title);
         ImageView iv_movie_poster = findViewById(R.id.iv_movie_poster);
         TextView tv_movie_release_date = findViewById(R.id.tv_movie_release_date);
         TextView tv_movie_rating = findViewById(R.id.tv_movie_vote_average);
         TextView tv_movie_overview = findViewById(R.id.tv_movie_overview);
         tv_trailers = findViewById(R.id.tv_trailers);
-        //tv_trailer_error_message = findViewById(R.id.tv_trailer_error_message);
 
         //set the movie trailer recycler view
         RecyclerView rv_movie_trailer = findViewById(R.id.rv_movie_trailer);

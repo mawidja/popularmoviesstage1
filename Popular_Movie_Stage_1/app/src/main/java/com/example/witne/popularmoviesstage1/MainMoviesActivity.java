@@ -25,8 +25,6 @@ import java.util.ArrayList;
 
 public class MainMoviesActivity extends AppCompatActivity implements MovieAdapter.ListItemClickLister {
 
-   // private final static String TAG = MainMoviesActivity.class.getSimpleName();
-
     private String popularOrTopRatedMovies;
     private ArrayList<Movie> movieList;
     private MovieAdapter movieAdapter;
