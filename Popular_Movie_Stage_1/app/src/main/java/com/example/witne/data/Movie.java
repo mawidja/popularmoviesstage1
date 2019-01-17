@@ -101,7 +101,7 @@ public class Movie implements Parcelable {
     }
 
     //De-parcel object
-    public Movie(Parcel in){
+    private Movie(Parcel in){
         release_date = in.readString();
         movieId = in.readInt();
         original_title = in.readString();

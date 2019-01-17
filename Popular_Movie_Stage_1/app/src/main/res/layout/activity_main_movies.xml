@@ -19,7 +19,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_popularMovies"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"></androidx.recyclerview.widget.RecyclerView>
+        android:layout_height="wrap_content" />
 
     <ProgressBar
         android:id="@+id/pb_loading_indicator"

@@ -5,10 +5,10 @@
         android:id="@+id/action_popular_movies"
         android:orderInCategory="1"
         app:showAsAction="ifRoom"
-        android:title="@string/popular_movies"></item>
+        android:title="@string/popular_movies" />
     <item
         android:id="@+id/action_top_rated_movies"
         android:orderInCategory="2"
         app:showAsAction="ifRoom"
-        android:title="@string/top_rated_movies"></item>
+        android:title="@string/top_rated_movies" />
 </menu>

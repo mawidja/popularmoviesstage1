@@ -17,24 +17,17 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import com.example.witne.utilities.JsonUtils;
 import com.example.witne.utilities.NetworkUtils;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
-//import com.example.witne.popularmoviesstage1.MovieAdapter.MovieAdapterOnClickHandler;
-import java.util.List;
-//import butterknife.BindView;
-//import butterknife.ButterKnife;
 
 public class MainMoviesActivity extends AppCompatActivity implements MovieAdapter.ListItemClickLister {
 
-    private final static String TAG = MainMoviesActivity.class.getSimpleName();
+   // private final static String TAG = MainMoviesActivity.class.getSimpleName();
 
     private String popularOrTopRatedMovies;
-    private URL movieSearchURL;
     private ArrayList<Movie> movieList;
     private MovieAdapter movieAdapter;
     /*@BindView(R.id.rv_popularMovies)
@@ -44,7 +37,6 @@ public class MainMoviesActivity extends AppCompatActivity implements MovieAdapte
     ProgressBar progressBar;*/
 
     private TextView tv_error_message;
-    private RecyclerView recyclerView;
     private ProgressBar progressBar;
 
     @Override
@@ -54,7 +46,7 @@ public class MainMoviesActivity extends AppCompatActivity implements MovieAdapte
         //ButterKnife.bind(this);
 
         tv_error_message = findViewById(R.id.tv_error_message);
-        recyclerView = findViewById(R.id.rv_popularMovies);
+        RecyclerView recyclerView = findViewById(R.id.rv_popularMovies);
         progressBar = findViewById(R.id.pb_loading_indicator);
 
         //define layout manager for the recycler view
@@ -82,8 +74,7 @@ public class MainMoviesActivity extends AppCompatActivity implements MovieAdapte
     private boolean isNetworkAvailable(){
         ConnectivityManager cm = (ConnectivityManager)getBaseContext().getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = cm.getActiveNetworkInfo();
-        boolean isNetworkAvailable = (networkInfo != null) && (networkInfo.isConnected());
-        return isNetworkAvailable;
+        return (networkInfo != null) && (networkInfo.isConnected());
     }
 
     private void showErrorMessage(){
@@ -100,10 +91,10 @@ public class MainMoviesActivity extends AppCompatActivity implements MovieAdapte
     }
 
     private void startMovieSearch(String popularOrTopRatedMovies){
-        movieSearchURL = NetworkUtils.buildUrl(popularOrTopRatedMovies);
+        URL movieSearchURL = NetworkUtils.buildUrl(popularOrTopRatedMovies);
         //fetch data on separate thread
         // and initialize the recycler viewer with data from movie adapter
-        new  FecthMovieTask().execute(movieSearchURL);
+        new  FetchMovieTask().execute(movieSearchURL);
     }
     @Override
     public void onListItemClick(Movie movie) {
@@ -136,7 +127,7 @@ public class MainMoviesActivity extends AppCompatActivity implements MovieAdapte
         return super.onOptionsItemSelected(menuItem);
     }
     //Async inner class to fetch network data
-    public class FecthMovieTask extends AsyncTask<URL, Void, String>{
+    class FetchMovieTask extends AsyncTask<URL, Void, String>{
 
         @Override
         protected void onPreExecute(){

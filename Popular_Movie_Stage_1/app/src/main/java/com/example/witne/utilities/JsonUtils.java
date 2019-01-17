@@ -1,7 +1,5 @@
 package com.example.witne.utilities;
 
-import android.util.Log;
-
 import com.example.witne.data.Movie;
 import com.example.witne.data.Trailer;
 import org.json.JSONArray;

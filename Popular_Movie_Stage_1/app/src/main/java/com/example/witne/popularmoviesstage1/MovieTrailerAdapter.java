@@ -6,7 +6,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import com.example.witne.data.Trailer;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -16,7 +15,7 @@ public class MovieTrailerAdapter extends RecyclerView.Adapter<MovieTrailerAdapte
 
     private ArrayList<Trailer> movieTrailers;
     private Trailer trailer;
-    private ListItemClickListener trailerListItemClicked;
+    private final ListItemClickListener trailerListItemClicked;
 
     public interface ListItemClickListener{
         void onListItemClick(Trailer trailer);
@@ -32,9 +31,9 @@ public class MovieTrailerAdapter extends RecyclerView.Adapter<MovieTrailerAdapte
         Context context = viewGroup.getContext();
         int layoutForListItem = R.layout.movie_trailer_item;
         LayoutInflater inflater = LayoutInflater.from(context);
-        boolean shouldAttachToParentImmediately = false;
+        //boolean shouldAttachToParentImmediately = false;
 
-        View view = inflater.inflate(layoutForListItem,viewGroup,shouldAttachToParentImmediately);
+        View view = inflater.inflate(layoutForListItem,viewGroup, false);
         return new MovieTrailerHolderAdapter(view);
     }
 
@@ -56,9 +55,9 @@ public class MovieTrailerAdapter extends RecyclerView.Adapter<MovieTrailerAdapte
 
     public class MovieTrailerHolderAdapter extends RecyclerView.ViewHolder implements View.OnClickListener{
 
-        public Button bt_movie_trailer;
+        Button bt_movie_trailer;
 
-        public MovieTrailerHolderAdapter(View itemView){
+        MovieTrailerHolderAdapter(View itemView){
             super(itemView);
             bt_movie_trailer = itemView.findViewById(R.id.bt_movie_trailer);
             //itemView.setOnClickListener(this);

@@ -78,7 +78,7 @@ public class Trailer implements Parcelable {
     }
 
     //De-parcel object
-    public Trailer(Parcel in){
+    private Trailer(Parcel in){
         movieId = in.readString();
         movieKey = in.readString();
         movieSite = in.readString();

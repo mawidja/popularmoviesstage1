@@ -2,11 +2,8 @@ package com.example.witne.popularmoviesstage1;
 
 import android.content.Context;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
@@ -20,7 +17,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
     private ArrayList<Movie> movieList;
     private Movie movie;
    //private MovieAdapterOnClickHandler movieAdapterOnClickHandler;
-    private ListItemClickLister listItemClickLister;
+    private final ListItemClickLister listItemClickLister;
 
     //interface to handle movie click event
     /*public interface MovieAdapterOnClickHandler{
@@ -41,9 +38,9 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
         Context context = viewGroup.getContext();
         int layoutForListItem = R.layout.movie_item;
         LayoutInflater inflater = LayoutInflater.from(context);
-        boolean shouldAttachToParentImmediately = false;
+        //boolean shouldAttachToParentImmediately = false;
 
-        View view = inflater.inflate(layoutForListItem,viewGroup,shouldAttachToParentImmediately);
+        View view = inflater.inflate(layoutForListItem,viewGroup, false);
         //MovieViewHolder movieViewHolder = new MovieViewHolder(view);
         //return movieViewHolder;
         return new MovieViewHolder(view);
@@ -70,9 +67,9 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
 
         //private static final String IMAGE_BASE_URL = "https://image.tmdb.org/t/p/w185";
 
-        public final ImageView imageView;
+        final ImageView imageView;
 
-        public MovieViewHolder(View itemView){
+        MovieViewHolder(View itemView){
             super(itemView);
             imageView = itemView.findViewById(R.id.iv_movie_poster);
             itemView.setOnClickListener(this);

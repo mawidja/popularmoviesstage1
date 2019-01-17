@@ -4,7 +4,7 @@ android {
     compileSdkVersion 28
     defaultConfig {
         applicationId "com.example.witne.popularmoviesstage1"
-        minSdkVersion 14
+        minSdkVersion 19
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
@@ -22,12 +22,7 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'com.squareup.picasso:picasso:2.71828'
     implementation 'androidx.appcompat:appcompat:1.0.2'
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.2'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
     implementation 'androidx.recyclerview:recyclerview:1.0.0'
-    
-    //Lightweight Butter knife API to inject views in Android components -
-    // could not use the API, had many issues, when trying to run on my Marshmallow device
-    //implementation 'com.jakewharton:butterknife:10.0.0'
-    //annotationProcessor 'com.jakewharton:butterknife-compiler:10.0.'
 
 }

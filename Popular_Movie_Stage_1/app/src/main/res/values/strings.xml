@@ -3,7 +3,7 @@
 
     <string name="error_message">Failed to get results, please try again later.</string>
 
-    <!-- For Main Movie Activity menu optionns -->
+    <!-- For Main Movie Activity menu options -->
     <string name="popular_movies">Popular Movies</string>
     <string name="top_rated_movies">Top Rated Movies</string>
 
@@ -15,5 +15,5 @@
 
     <!--For Movie Trailer layout -->
     <string name="movie_trailer_tv">Trailers</string>
-    <string name="movie_trailer_button_text">Movie Trailer</string>
+    <!--<string name="movie_trailer_button_text">Movie Trailer</string>-->
 </resources>
