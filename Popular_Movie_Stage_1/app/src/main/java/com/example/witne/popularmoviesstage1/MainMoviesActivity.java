@@ -1,8 +1,6 @@
 package com.example.witne.popularmoviesstage1;
 
-//import android.graphics.Movie;
 import com.example.witne.data.Movie;
-
 import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
